@@ -1,0 +1,92 @@
+{
+  "info": {
+    "name": "Student Registration API",
+    "_postman_id": "student-registration-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "student_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Create Student Success",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{base_url}}/students",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Rahul\",\"email\":\"rahul@example.com\",\"phone\":\"9999999999\",\"course\":\"BCA\"}"
+        }
+      }
+    },
+    {
+      "name": "Create Duplicate Email (409)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{base_url}}/students",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Rahul\",\"email\":\"rahul@example.com\",\"course\":\"BCA\"}"
+        }
+      }
+    },
+    {
+      "name": "Create Missing Field (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{base_url}}/students",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Rahul\"}"
+        }
+      }
+    },
+    {
+      "name": "Get All Students",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/students?page=1&limit=5&search="
+      }
+    },
+    {
+      "name": "Get One Student",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/students/{{student_id}}"
+      }
+    },
+    {
+      "name": "Update Student",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{base_url}}/students/{{student_id}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Updated Rahul\",\"course\":\"BBA\"}"
+        }
+      }
+    },
+    {
+      "name": "Delete Student",
+      "request": {
+        "method": "DELETE",
+        "url": "{{base_url}}/students/{{student_id}}"
+      }
+    }
+  ]
+}
